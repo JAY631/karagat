@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import logoBlack from "../../images/logo/logo-black.png";
 import logoWhite from "../../images/logo/logo-white.png";
 import logoWhite2 from "../../images/logo/logo-white2.png";
@@ -23,6 +23,8 @@ import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import { useSelector } from "react-redux";
 import { selectThemeColor } from "../../store/theme";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBars, faX } from '@fortawesome/free-solid-svg-icons'
 // function change(num, from, to, target) {
 //   for (let i = 0; i < document.getElementsByClassName(target).length; i++) {
 //     document.getElementsByClassName(target)[i].classList.remove(to)
@@ -41,6 +43,10 @@ const settings = {
   speed: 250
 };
 const HomeSeoBlog = () => {
+  const [showBurger, setShowBurger] = useState(false);
+  const burgerFunc = () =>{
+    setShowBurger(!showBurger)
+  }
   function change(num, to, target) {
     for (let i = 0; i < document.getElementsByClassName(target).length; i++) {
       document.getElementsByClassName(target)[i].classList.remove(to)
@@ -52,7 +58,7 @@ const HomeSeoBlog = () => {
   const themeColor = useSelector(selectThemeColor);
   return (
     <>
-      <div className="main-wrapper">
+      <div className={showBurger ? "main-wrapper popup-mobile-menu-show" : 'main-wrapper'}>
         <div className="mouse-cursor cursor-outer" />
         <div className="mouse-cursor cursor-inner" />
         {/* Start Header */}
@@ -1157,8 +1163,8 @@ const HomeSeoBlog = () => {
                   {/* Start Hamburger Menu  */}
                   <div className="hamburger-menu d-block d-xl-none">
                     <div className="hamburger-inner">
-                      <div className="icon">
-                        <i className="fal fa-bars" />
+                      <div className="icon" onClick={burgerFunc}>
+                        <FontAwesomeIcon icon={faBars} />
                       </div>
                     </div>
                   </div>
@@ -1170,8 +1176,8 @@ const HomeSeoBlog = () => {
         </header>
         {/* Start Header */}
         {/* Start Mobile Menu Area  */}
-        <div className={"popup-mobilemenu-area" + themeColor}>
-          <div className="inner">
+        <div className={"popup-mobilemenu-area"} onClick={burgerFunc}>
+          <div className={"inner" + themeColor} onClick={(event)=> event.stopPropagation()}>
             <div className="mobile-menu-top">
               <div className="logo">
                 <a href="index.html">
@@ -1184,12 +1190,12 @@ const HomeSeoBlog = () => {
                     className="light-logo"
                     src={logoWhite}
                     alt="Logo Images"
-                  />
+                  /> 
                 </a>
               </div>
-              <div className="mobile-close">
+              <div className="mobile-close" onClick={burgerFunc}>
                 <div className="icon">
-                  <i className="fal fa-times" />
+                  <i><FontAwesomeIcon icon={faX}/></i>
                 </div>
               </div>
             </div>

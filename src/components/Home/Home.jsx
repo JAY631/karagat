@@ -42,33 +42,36 @@ import postGrid3 from "../../images/post-images/post-grid-03.jpg";
 import postGrid7 from "../../images/post-images/post-grid-07.jpg";
 import postGrid8 from "../../images/post-images/post-grid-08.jpg";
 import postGrid9 from "../../images/post-images/post-grid-09.jpg";
-import postLis11 from '../../images/post-images/post-list-11.jpg';
-import postLis12 from '../../images/post-images/post-list-12.jpg';
-import postLis13 from '../../images/post-images/post-list-13.jpg';
-import postLis14 from '../../images/post-images/post-list-14.jpg';
-import postLis15 from '../../images/post-images/post-list-15.jpg';
-import categoryImage01 from '../../images/post-images/category-image-01.jpg';
-import categoryImage02 from '../../images/post-images/category-image-02.jpg';
-import categoryImage03 from '../../images/post-images/category-image-03.jpg';
-import categoryImage04 from '../../images/post-images/category-image-04.jpg';
-import blogSm01 from '../../images/small-images/blog-sm-01.jpg';
-import blogSm02 from '../../images/small-images/blog-sm-02.jpg';
-import blogSm03 from '../../images/small-images/blog-sm-03.jpg';
-import instagram01 from '../../images/small-images/instagram-01.jpg'; 
-import instagram02 from '../../images/small-images/instagram-02.jpg'; 
-import instagram03 from '../../images/small-images/instagram-03.jpg'; 
-import instagram04 from '../../images/small-images/instagram-04.jpg'; 
-import instagram05 from '../../images/small-images/instagram-05.jpg'; 
-import instagram06 from '../../images/small-images/instagram-06.jpg'; 
-import postDark01 from '../../images/post-images/post-dark-01.jpg';
-import postDark03 from '../../images/post-images/post-dark-03.jpg';
-import postDark04 from '../../images/post-images/post-dark-04.jpg';
-import postDark05 from '../../images/post-images/post-dark-05.jpg';
+import postLis11 from "../../images/post-images/post-list-11.jpg";
+import postLis12 from "../../images/post-images/post-list-12.jpg";
+import postLis13 from "../../images/post-images/post-list-13.jpg";
+import postLis14 from "../../images/post-images/post-list-14.jpg";
+import postLis15 from "../../images/post-images/post-list-15.jpg";
+import categoryImage01 from "../../images/post-images/category-image-01.jpg";
+import categoryImage02 from "../../images/post-images/category-image-02.jpg";
+import categoryImage03 from "../../images/post-images/category-image-03.jpg";
+import categoryImage04 from "../../images/post-images/category-image-04.jpg";
+import blogSm01 from "../../images/small-images/blog-sm-01.jpg";
+import blogSm02 from "../../images/small-images/blog-sm-02.jpg";
+import blogSm03 from "../../images/small-images/blog-sm-03.jpg";
+import instagram01 from "../../images/small-images/instagram-01.jpg";
+import instagram02 from "../../images/small-images/instagram-02.jpg";
+import instagram03 from "../../images/small-images/instagram-03.jpg";
+import instagram04 from "../../images/small-images/instagram-04.jpg";
+import instagram05 from "../../images/small-images/instagram-05.jpg";
+import instagram06 from "../../images/small-images/instagram-06.jpg";
+import postDark01 from "../../images/post-images/post-dark-01.jpg";
+import postDark03 from "../../images/post-images/post-dark-03.jpg";
+import postDark04 from "../../images/post-images/post-dark-04.jpg";
+import postDark05 from "../../images/post-images/post-dark-05.jpg";
 import Slider from "react-slick";
-// import Carousel from 'react-multi-carousel';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars, faX } from "@fortawesome/free-solid-svg-icons";
+// import Carousel frаom 'react-multi-carousel';
 // import 'react-multi-carousel/lib/styles.css';
 import { useSelector } from "react-redux";
 import { selectThemeColor } from "../../store/theme";
+import { useState } from "react";
 const settings = {
   dots: false,
   infinite: true,
@@ -77,32 +80,38 @@ const settings = {
   slidesToScroll: 1,
   arrows: true,
   swipe: true,
-  speed: 250
+  speed: 250,
 };
 
-
-
-
-
-
 const Home = () => {
+  const [showBurger, setShowBurger] = useState(false);
+  const burgerFunc = () => {
+    setShowBurger(!showBurger);
+  };
   const themeColor = useSelector(selectThemeColor);
   function change(num, to, target) {
     for (let i = 0; i < document.getElementsByClassName(target).length; i++) {
-      document.getElementsByClassName(target)[i].classList.remove(to)
-      document.getElementsByClassName(target)[num].classList.add(to)
-      console.log(document.getElementsByClassName(target)[num].classList)
+      document.getElementsByClassName(target)[i].classList.remove(to);
+      document.getElementsByClassName(target)[num].classList.add(to);
+      console.log(document.getElementsByClassName(target)[num].classList);
     }
-    
   }
   return (
     <>
-      <div className="main-wrapper">
+      <div
+        className={
+          showBurger ? "main-wrapper popup-mobile-menu-show" : "main-wrapper"
+        }
+      >
         <div className="mouse-cursor cursor-outer" />
         <div className="mouse-cursor cursor-inner" />
 
         {/* Start Header */}
-        <header className={"header axil-header header-light header-sticky" + themeColor }>
+        <header
+          className={
+            "header axil-header header-light header-sticky" + themeColor
+          }
+        >
           <div className="header-wrap">
             <div className="row justify-content-between align-items-center">
               <div className="col-xl-3 col-lg-3 col-md-4 col-sm-3 col-12">
@@ -136,7 +145,7 @@ const Home = () => {
                             >
                               <span className="hover-flip-item">
                                 <span data-text="Home Default">
-                                  <Link to={'/'}>Home Default</Link>
+                                  <Link to={"/"}>Home Default</Link>
                                 </span>
                               </span>
                             </a>
@@ -144,7 +153,7 @@ const Home = () => {
                           <li>
                             <Link
                               className="hover-flip-item-wrapper"
-                              to={'/HomeCreativeBlog'}
+                              to={"/HomeCreativeBlog"}
                             >
                               <span className="hover-flip-item">
                                 <span data-text="Home Creative Blog">
@@ -168,7 +177,7 @@ const Home = () => {
                           <li>
                             <Link
                               className="hover-flip-item-wrapper"
-                              to={'/HomeTechBlog'}
+                              to={"/HomeTechBlog"}
                             >
                               <span className="hover-flip-item">
                                 <span data-text="Home Tech Blog">
@@ -180,7 +189,7 @@ const Home = () => {
                           <li>
                             <Link
                               className="hover-flip-item-wrapper"
-                              to={'/HomeLifestyleBlog'}
+                              to={"/HomeLifestyleBlog"}
                             >
                               <span className="hover-flip-item">
                                 <span data-text="Home Lifestyle Blog">
@@ -197,7 +206,7 @@ const Home = () => {
                           <li>
                             <Link
                               className="hover-flip-item-wrapper"
-                              to={'/PostFormatStandard'}
+                              to={"/PostFormatStandard"}
                             >
                               <span className="hover-flip-item">
                                 <span data-text="Post Format Standard">
@@ -209,7 +218,7 @@ const Home = () => {
                           <li>
                             <Link
                               className="hover-flip-item-wrapper"
-                              to={'/PostFormatVideo'}
+                              to={"/PostFormatVideo"}
                             >
                               <span className="hover-flip-item">
                                 <span data-text="Post Format Video">
@@ -221,7 +230,7 @@ const Home = () => {
                           <li>
                             <Link
                               className="hover-flip-item-wrapper"
-                              to={'/PostFormatGallery'}
+                              to={"/PostFormatGallery"}
                             >
                               <span className="hover-flip-item">
                                 <span data-text="Post Format Gallery">
@@ -233,7 +242,7 @@ const Home = () => {
                           <li>
                             <Link
                               className="hover-flip-item-wrapper"
-                              to={'/PostFormatText'}
+                              to={"/PostFormatText"}
                             >
                               <span className="hover-flip-item">
                                 <span data-text="Post Format Text Only">
@@ -245,7 +254,7 @@ const Home = () => {
                           <li>
                             <Link
                               className="hover-flip-item-wrapper"
-                              to={'/PostLayout1'}
+                              to={"/PostLayout1"}
                             >
                               <span className="hover-flip-item">
                                 <span data-text="Post Layout One">
@@ -257,7 +266,7 @@ const Home = () => {
                           <li>
                             <Link
                               className="hover-flip-item-wrapper"
-                              to={'/PostLayout2'}
+                              to={"/PostLayout2"}
                             >
                               <span className="hover-flip-item">
                                 <span data-text="Post Layout Two">
@@ -269,7 +278,7 @@ const Home = () => {
                           <li>
                             <Link
                               className="hover-flip-item-wrapper"
-                              to={'/PostLayout3'}
+                              to={"/PostLayout3"}
                             >
                               <span className="hover-flip-item">
                                 <span data-text="Post Layout Three">
@@ -281,7 +290,7 @@ const Home = () => {
                           <li>
                             <Link
                               className="hover-flip-item-wrapper"
-                              to={'/PostLayout4'}
+                              to={"/PostLayout4"}
                             >
                               <span className="hover-flip-item">
                                 <span data-text="Post Layout Four">
@@ -293,7 +302,7 @@ const Home = () => {
                           <li>
                             <Link
                               className="hover-flip-item-wrapper"
-                              to={'/PostLayout5'}
+                              to={"/PostLayout5"}
                             >
                               <span className="hover-flip-item">
                                 <span data-text="Post Layout Five">
@@ -311,7 +320,12 @@ const Home = () => {
                             {/* Start Verticle Nav  */}
                             <div className="axil-vertical-nav">
                               <ul className="vertical-nav-menu">
-                                <li className="vertical-nav-item active mega-menu-item" onMouseOver={()=>change(0, "active","mega-menu-item")}>
+                                <li
+                                  className="vertical-nav-item active mega-menu-item"
+                                  onMouseOver={() =>
+                                    change(0, "active", "mega-menu-item")
+                                  }
+                                >
                                   <a
                                     className="hover-flip-item-wrapper"
                                     href="#tab1"
@@ -323,7 +337,12 @@ const Home = () => {
                                     </span>
                                   </a>
                                 </li>
-                                <li className="vertical-nav-item mega-menu-item" onMouseOver={()=>change(1, "active","mega-menu-item")}>
+                                <li
+                                  className="vertical-nav-item mega-menu-item"
+                                  onMouseOver={() =>
+                                    change(1, "active", "mega-menu-item")
+                                  }
+                                >
                                   <a
                                     className="hover-flip-item-wrapper"
                                     href="#tab2"
@@ -335,7 +354,12 @@ const Home = () => {
                                     </span>
                                   </a>
                                 </li>
-                                <li className="vertical-nav-item mega-menu-item" onMouseOver={()=>change(2, "active","mega-menu-item")}>
+                                <li
+                                  className="vertical-nav-item mega-menu-item"
+                                  onMouseOver={() =>
+                                    change(2, "active", "mega-menu-item")
+                                  }
+                                >
                                   <a
                                     className="hover-flip-item-wrapper"
                                     href="#tab3"
@@ -347,7 +371,12 @@ const Home = () => {
                                     </span>
                                   </a>
                                 </li>
-                                <li className="vertical-nav-item mega-menu-item" onMouseOver={()=>change(3, "active","mega-menu-item")}>
+                                <li
+                                  className="vertical-nav-item mega-menu-item"
+                                  onMouseOver={() =>
+                                    change(3, "active", "mega-menu-item")
+                                  }
+                                >
                                   <a
                                     className="hover-flip-item-wrapper"
                                     href="#tab4"
@@ -1020,7 +1049,7 @@ const Home = () => {
                           <li>
                             <Link
                               className="hover-flip-item-wrapper"
-                              to={'/PostArchive'}
+                              to={"/PostArchive"}
                             >
                               <span className="hover-flip-item">
                                 <span data-text="Post Archive">
@@ -1032,7 +1061,7 @@ const Home = () => {
                           <li>
                             <Link
                               className="hover-flip-item-wrapper"
-                              to={'/Author'}
+                              to={"/Author"}
                             >
                               <span className="hover-flip-item">
                                 <span data-text="Author Page">Author Page</span>
@@ -1042,7 +1071,7 @@ const Home = () => {
                           <li>
                             <Link
                               className="hover-flip-item-wrapper"
-                              to={'/About'}
+                              to={"/About"}
                             >
                               <span className="hover-flip-item">
                                 <span data-text="About Page">About Page</span>
@@ -1052,7 +1081,7 @@ const Home = () => {
                           <li>
                             <Link
                               className="hover-flip-item-wrapper"
-                              to={'/Contact'}
+                              to={"/Contact"}
                             >
                               <span className="hover-flip-item">
                                 <span data-text="Contact Us">Contact Us</span>
@@ -1062,7 +1091,7 @@ const Home = () => {
                           <li>
                             <Link
                               className="hover-flip-item-wrapper"
-                              to={'/Error'}
+                              to={"/Error"}
                             >
                               <span className="hover-flip-item">
                                 <span data-text="404 Page">404 Page</span>
@@ -1072,7 +1101,7 @@ const Home = () => {
                           <li>
                             <Link
                               className="hover-flip-item-wrapper"
-                              to={'/Maintenance'}
+                              to={"/Maintenance"}
                             >
                               <span className="hover-flip-item">
                                 <span data-text="Maintenance">Maintenance</span>
@@ -1082,7 +1111,7 @@ const Home = () => {
                           <li>
                             <Link
                               className="hover-flip-item-wrapper"
-                              to={'/PrivacyPolicy'}
+                              to={"/PrivacyPolicy"}
                             >
                               <span className="hover-flip-item">
                                 <span data-text="Privacy Policy">
@@ -1094,10 +1123,10 @@ const Home = () => {
                         </ul>
                       </li>
                       <li>
-                        <Link to={'/HomeLifestyleBlog'}>Lifestyle</Link>
+                        <Link to={"/HomeLifestyleBlog"}>Lifestyle</Link>
                       </li>
                       <li>
-                        <Link to={'/HomeTechBlog'}>Gadgets</Link>
+                        <Link to={"/HomeTechBlog"}>Gadgets</Link>
                       </li>
                     </ul>
                     {/* End Mainmanu Nav */}
@@ -1155,8 +1184,8 @@ const Home = () => {
                   {/* Start Hamburger Menu  */}
                   <div className="hamburger-menu d-block d-xl-none">
                     <div className="hamburger-inner">
-                      <div className="icon">
-                        <i className="fal fa-bars" />
+                      <div className="icon" onClick={burgerFunc}>
+                        <FontAwesomeIcon icon={faBars} />
                       </div>
                     </div>
                   </div>
@@ -1168,8 +1197,18 @@ const Home = () => {
         </header>
         {/* Start Header */}
         {/* Start Mobile Menu Area  */}
-        <div className={"popup-mobilemenu-area" + themeColor}>
-          <div className="inner">
+        <div
+          className={
+            showBurger
+              ? "popup-mobilemenu-area popup-mobile-menu-show"
+              : "popup-mobilemenu-area"
+          }
+          onClick={burgerFunc}
+        >
+          <div
+            className={"inner" + themeColor}
+            onClick={(event) => event.stopPropagation()}
+          >
             <div className="mobile-menu-top">
               <div className="logo">
                 <a href="index.html">
@@ -1185,9 +1224,11 @@ const Home = () => {
                   />
                 </a>
               </div>
-              <div className="mobile-close">
+              <div className="mobile-close" onClick={burgerFunc}>
                 <div className="icon">
-                  <i className="fal fa-times" />
+                  <i>
+                    <FontAwesomeIcon icon={faX} />
+                  </i>
                 </div>
               </div>
             </div>
@@ -1306,9 +1347,8 @@ const Home = () => {
             <div className="container">
               <div className="row">
                 <div className="col-lg-12">
-                  
                   <div className="slider-activation axil-slick-arrow">
-                  {/* <Carousel> */}
+                    {/* <Carousel> */}
                     {/* Start Single Slide  */}
                     <div className="content-block">
                       {/* Start Post Thumbnail  */}
@@ -1330,7 +1370,9 @@ const Home = () => {
                           </div>
                         </div>
                         <h2 className="title">
-                          <a className={'map'} href="post-details.html">4 Типа программистов</a>
+                          <a className={"map"} href="post-details.html">
+                            4 Типа программистов
+                          </a>
                         </h2>
                         {/* Post Meta  */}
                         <div className="post-meta-wrapper with-button">
@@ -1415,7 +1457,7 @@ const Home = () => {
                           </div>
                         </div>
                         <h2 className="title">
-                          <a href="post-details.html" className={'map'}>
+                          <a href="post-details.html" className={"map"}>
                             These 5 tips will help you nail your next design
                             presentation
                           </a>
@@ -1503,7 +1545,7 @@ const Home = () => {
                           </div>
                         </div>
                         <h2 className="title">
-                          <a href="post-details.html" className={'map'}>
+                          <a href="post-details.html" className={"map"}>
                             iPadOS 14 introduces new designed specifically for
                             iPad
                           </a>
@@ -1579,7 +1621,11 @@ const Home = () => {
         </div>
         {/* End Banner Area */}
         {/* Start Featured Area  */}
-        <div className={"axil-featured-post axil-section-gap bg-color-grey" + themeColor}>
+        <div
+          className={
+            "axil-featured-post axil-section-gap bg-color-grey" + themeColor
+          }
+        >
           <div className="container">
             <div className="row">
               <div className="col-lg-12">
@@ -1690,7 +1736,11 @@ const Home = () => {
         </div>
         {/* End Featured Area  */}
         {/* Start Tab Area  */}
-        <div className={"axil-tab-area axil-section-gap bg-color-white" + themeColor}>
+        <div
+          className={
+            "axil-tab-area axil-section-gap bg-color-white" + themeColor
+          }
+        >
           <div className="wrapper">
             <div className="container">
               <div className="row">
@@ -1785,7 +1835,10 @@ const Home = () => {
                       role="tabpanel"
                       aria-labelledby="tab-one"
                     >
-                      <Slider className="modern-post-activation slick-layout-wrapper axil-slick-arrow arrow-between-side" {...settings}>
+                      <Slider
+                        className="modern-post-activation slick-layout-wrapper axil-slick-arrow arrow-between-side"
+                        {...settings}
+                      >
                         <div className="slick-single-layout">
                           <div className="content-block modern-post-style text-center content-block-column darks">
                             <div className="post-content">
@@ -1826,9 +1879,7 @@ const Home = () => {
                                     href="#"
                                   >
                                     <span className="hover-flip-item">
-                                      <span data-text="APPLE DESIGN">
-                                        HUI
-                                      </span>
+                                      <span data-text="APPLE DESIGN">HUI</span>
                                     </span>
                                   </a>
                                 </div>
@@ -1912,7 +1963,10 @@ const Home = () => {
                       role="tabpanel"
                       aria-labelledby="tab-two"
                     >
-                      <Slider className="modern-post-activation slick-layout-wrapper axil-slick-arrow arrow-between-side" {...settings}>
+                      <Slider
+                        className="modern-post-activation slick-layout-wrapper axil-slick-arrow arrow-between-side"
+                        {...settings}
+                      >
                         {/* Start Single Post  */}
                         <div className="slick-single-layout">
                           <div className="content-block modern-post-style text-center content-block-column darks">
@@ -2049,7 +2103,10 @@ const Home = () => {
                       role="tabpanel"
                       aria-labelledby="tab-three"
                     >
-                      <Slider className="modern-post-activation slick-layout-wrapper axil-slick-arrow arrow-between-side" {...settings}>
+                      <Slider
+                        className="modern-post-activation slick-layout-wrapper axil-slick-arrow arrow-between-side"
+                        {...settings}
+                      >
                         {/* Start Single Post  */}
                         <div className="slick-single-layout">
                           <div className="content-block modern-post-style text-center content-block-column darks">
@@ -2180,7 +2237,10 @@ const Home = () => {
                       role="tabpanel"
                       aria-labelledby="tab-four"
                     >
-                      <Slider className="modern-post-activation slick-layout-wrapper axil-slick-arrow arrow-between-side" {...settings}>
+                      <Slider
+                        className="modern-post-activation slick-layout-wrapper axil-slick-arrow arrow-between-side"
+                        {...settings}
+                      >
                         {/* Start Single Post  */}
                         <div className="slick-single-layout">
                           <div className="content-block modern-post-style text-center content-block-column darks">
@@ -2314,7 +2374,11 @@ const Home = () => {
         </div>
         {/* End Tab Area  */}
         {/* Start Categories List  */}
-        <div className={"axil-categories-list axil-section-gap bg-color-grey" + themeColor}>
+        <div
+          className={
+            "axil-categories-list axil-section-gap bg-color-grey" + themeColor
+          }
+        >
           <div className="container">
             <div className="row align-items-center mb--30">
               <div className="col-lg-6 col-md-8 col-sm-8 col-12">
@@ -2426,7 +2490,12 @@ const Home = () => {
         </div>
         {/* Start Categories List  */}
         {/* Start Trending Post Area  */}
-        <div className={"axil-trending-post-area axil-section-gap bg-color-white" + themeColor}>
+        <div
+          className={
+            "axil-trending-post-area axil-section-gap bg-color-white" +
+            themeColor
+          }
+        >
           <div className="container">
             <div className="row">
               <div className="col-lg-12">
@@ -2507,7 +2576,10 @@ const Home = () => {
                   >
                     <div className="col-lg-8">
                       {/* Start Single Post  */}
-                      <div className="content-block trend-post post-order-list axil-control" onMouseOver={()=>change(0, "is-active", "trend-post")}>
+                      <div
+                        className="content-block trend-post post-order-list axil-control"
+                        onMouseOver={() => change(0, "is-active", "trend-post")}
+                      >
                         <div className="post-inner">
                           <span className="post-order-list num">01</span>
                           <div className="post-content">
@@ -2582,7 +2654,10 @@ const Home = () => {
                       </div>
                       {/* End Single Post  */}
                       {/* Start Single Post  */}
-                      <div className="content-block trend-post post-order-list is-active" onMouseOver={()=>change(1, "is-active", "trend-post")}>
+                      <div
+                        className="content-block trend-post post-order-list is-active"
+                        onMouseOver={() => change(1, "is-active", "trend-post")}
+                      >
                         <div className="post-inner">
                           <span className="post-order-list num">02</span>
                           <div className="post-content">
@@ -2654,8 +2729,11 @@ const Home = () => {
                         </div>
                       </div>
                       {/* End Single Post  */}
-                        {/* Start Single Post  */}
-                        <div className="content-block trend-post post-order-list axil-control" onMouseOver={()=>change(2, "is-active", "trend-post")}>
+                      {/* Start Single Post  */}
+                      <div
+                        className="content-block trend-post post-order-list axil-control"
+                        onMouseOver={() => change(2, "is-active", "trend-post")}
+                      >
                         <div className="post-inner">
                           <span className="post-order-list num">03</span>
                           <div className="post-content">
@@ -2728,7 +2806,10 @@ const Home = () => {
                       </div>
                       {/* End Single Post  */}
                       {/* Start Single Post  */}
-                      <div className="content-block trend-post post-order-list axil-control" onMouseOver={()=>change(3, "is-active", "trend-post")}>
+                      <div
+                        className="content-block trend-post post-order-list axil-control"
+                        onMouseOver={() => change(3, "is-active", "trend-post")}
+                      >
                         <div className="post-inner">
                           <span className="post-order-list num">04</span>
                           <div className="post-content">
@@ -2814,7 +2895,10 @@ const Home = () => {
                   >
                     <div className="col-lg-8">
                       {/* Start Single Post  */}
-                      <div className="content-block trend-post post-order-list axil-control" onMouseOver={()=>change(0, "is-active", "trend-post")}>
+                      <div
+                        className="content-block trend-post post-order-list axil-control"
+                        onMouseOver={() => change(0, "is-active", "trend-post")}
+                      >
                         <div className="post-inner">
                           <span className="post-order-list num">01</span>
                           <div className="post-content">
@@ -2887,7 +2971,10 @@ const Home = () => {
                       </div>
                       {/* End Single Post  */}
                       {/* Start Single Post  */}
-                      <div className="content-block trend-post post-order-list axil-control is-active" onMouseOver={()=>change(5, "is-active", "trend-post")}>
+                      <div
+                        className="content-block trend-post post-order-list axil-control is-active"
+                        onMouseOver={() => change(5, "is-active", "trend-post")}
+                      >
                         <div className="post-inner">
                           <span className="post-order-list num">02</span>
                           <div className="post-content">
@@ -2958,7 +3045,10 @@ const Home = () => {
                       </div>
                       {/* End Single Post  */}
                       {/* Start Single Post  */}
-                      <div className="content-block trend-post post-order-list axil-control" onMouseOver={()=>change(6, "is-active", "trend-post")}>
+                      <div
+                        className="content-block trend-post post-order-list axil-control"
+                        onMouseOver={() => change(6, "is-active", "trend-post")}
+                      >
                         <div className="post-inner">
                           <span className="post-order-list num">03</span>
                           <div className="post-content">
@@ -3031,7 +3121,10 @@ const Home = () => {
                       </div>
                       {/* End Single Post  */}
                       {/* Start Single Post  */}
-                      <div className="content-block trend-post post-order-list axil-control" onMouseOver={()=>change(7, "is-active", "trend-post")}>
+                      <div
+                        className="content-block trend-post post-order-list axil-control"
+                        onMouseOver={() => change(7, "is-active", "trend-post")}
+                      >
                         <div className="post-inner">
                           <span className="post-order-list num">04</span>
                           <div className="post-content">
@@ -3117,7 +3210,10 @@ const Home = () => {
                   >
                     <div className="col-lg-8">
                       {/* Start Single Post  */}
-                      <div className="content-block trend-post post-order-list axil-control" onMouseOver={()=>change(8, "is-active", "trend-post")}>
+                      <div
+                        className="content-block trend-post post-order-list axil-control"
+                        onMouseOver={() => change(8, "is-active", "trend-post")}
+                      >
                         <div className="post-inner">
                           <span className="post-order-list num">01</span>
                           <div className="post-content">
@@ -3190,7 +3286,10 @@ const Home = () => {
                       </div>
                       {/* End Single Post  */}
                       {/* Start Single Post  */}
-                      <div className="content-block trend-post post-order-list axil-control is-active" onMouseOver={()=>change(9, "is-active", "trend-post")}>
+                      <div
+                        className="content-block trend-post post-order-list axil-control is-active"
+                        onMouseOver={() => change(9, "is-active", "trend-post")}
+                      >
                         <div className="post-inner">
                           <span className="post-order-list num">02</span>
                           <div className="post-content">
@@ -3263,7 +3362,12 @@ const Home = () => {
                       </div>
                       {/* End Single Post  */}
                       {/* Start Single Post  */}
-                      <div className="content-block trend-post post-order-list axil-control" onMouseOver={()=>change(11, "is-active", "trend-post")}>
+                      <div
+                        className="content-block trend-post post-order-list axil-control"
+                        onMouseOver={() =>
+                          change(11, "is-active", "trend-post")
+                        }
+                      >
                         <div className="post-inner">
                           <span className="post-order-list num">03</span>
                           <div className="post-content">
@@ -3336,7 +3440,12 @@ const Home = () => {
                       </div>
                       {/* End Single Post  */}
                       {/* Start Single Post  */}
-                      <div className="content-block trend-post post-order-list axil-control" onMouseOver={()=>change(11, "is-active", "trend-post")}>
+                      <div
+                        className="content-block trend-post post-order-list axil-control"
+                        onMouseOver={() =>
+                          change(11, "is-active", "trend-post")
+                        }
+                      >
                         <div className="post-inner">
                           <span className="post-order-list num">04</span>
                           <div className="post-content">
@@ -3422,7 +3531,12 @@ const Home = () => {
                   >
                     <div className="col-lg-8">
                       {/* Start Single Post  */}
-                      <div className="content-block trend-post post-order-list axil-control" onMouseOver={()=>change(12, "is-active", "trend-post")}>
+                      <div
+                        className="content-block trend-post post-order-list axil-control"
+                        onMouseOver={() =>
+                          change(12, "is-active", "trend-post")
+                        }
+                      >
                         <div className="post-inner">
                           <span className="post-order-list num">01</span>
                           <div className="post-content">
@@ -3497,7 +3611,10 @@ const Home = () => {
                       </div>
                       {/* End Single Post  */}
                       {/* Start Single Post  */}
-                      <div className="content-block trend-post post-order-list axil-control is-active" onMouseOver={change(13, "is-active", "trend-post")}>
+                      <div
+                        className="content-block trend-post post-order-list axil-control is-active"
+                        onMouseOver={change(13, "is-active", "trend-post")}
+                      >
                         <div className="post-inner">
                           <span className="post-order-list num">02</span>
                           <div className="post-content">
@@ -3568,7 +3685,12 @@ const Home = () => {
                       </div>
                       {/* End Single Post  */}
                       {/* Start Single Post  */}
-                      <div className="content-block trend-post post-order-list axil-control" onMouseOver={()=>change(14, "is-active", "trend-post")}>
+                      <div
+                        className="content-block trend-post post-order-list axil-control"
+                        onMouseOver={() =>
+                          change(14, "is-active", "trend-post")
+                        }
+                      >
                         <div className="post-inner">
                           <span className="post-order-list num">03</span>
                           <div className="post-content">
@@ -3641,7 +3763,12 @@ const Home = () => {
                       </div>
                       {/* End Single Post  */}
                       {/* Start Single Post  */}
-                      <div className="content-block trend-post post-order-list axil-control" onMouseOver={()=>change(15, "is-active", "trend-post")}>
+                      <div
+                        className="content-block trend-post post-order-list axil-control"
+                        onMouseOver={() =>
+                          change(15, "is-active", "trend-post")
+                        }
+                      >
                         <div className="post-inner">
                           <span className="post-order-list num">04</span>
                           <div className="post-content">
@@ -3726,7 +3853,11 @@ const Home = () => {
         </div>
         {/* End Trending Post Area  */}
         {/* Start Post Grid Area  */}
-        <div className={"axil-post-grid-area axil-section-gap bg-color-grey" + themeColor}>
+        <div
+          className={
+            "axil-post-grid-area axil-section-gap bg-color-grey" + themeColor
+          }
+        >
           <div className="container">
             <div className="row axil-section-gapBottom">
               <div className="col-lg-12">
@@ -4100,10 +4231,7 @@ const Home = () => {
                             <div className="content-block post-grid mt--30">
                               <div className="post-thumbnail">
                                 <a href="post-details.html">
-                                  <img
-                                    src={postGrid2}
-                                    alt="Post Images"
-                                  />
+                                  <img src={postGrid2} alt="Post Images" />
                                 </a>
                               </div>
                               <div className="post-grid-content">
@@ -4138,10 +4266,7 @@ const Home = () => {
                             <div className="content-block post-grid mt--30">
                               <div className="post-thumbnail">
                                 <a href="post-details.html">
-                                  <img
-                                    src={postGrid3}
-                                    alt="Post Images"
-                                  />
+                                  <img src={postGrid3} alt="Post Images" />
                                 </a>
                               </div>
                               <div className="post-grid-content">
@@ -4186,10 +4311,7 @@ const Home = () => {
                         <div className="content-block post-grid post-grid-large mt--30">
                           <div className="post-thumbnail">
                             <a href="post-details.html">
-                              <img
-                                src={postGrid9}
-                                alt="Post Images"
-                              />
+                              <img src={postGrid9} alt="Post Images" />
                             </a>
                           </div>
                           <div className="post-grid-content">
@@ -4274,10 +4396,7 @@ const Home = () => {
                             <div className="content-block post-grid mt--30">
                               <div className="post-thumbnail">
                                 <a href="post-details.html">
-                                  <img
-                                    src={postGrid7}
-                                    alt="Post Images"
-                                  />
+                                  <img src={postGrid7} alt="Post Images" />
                                 </a>
                               </div>
                               <div className="post-grid-content">
@@ -4312,10 +4431,7 @@ const Home = () => {
                             <div className="content-block post-grid mt--30">
                               <div className="post-thumbnail">
                                 <a href="post-details.html">
-                                  <img
-                                    src={postGrid8}
-                                    alt="Post Images"
-                                  />
+                                  <img src={postGrid8} alt="Post Images" />
                                 </a>
                               </div>
                               <div className="post-grid-content">
@@ -4360,10 +4476,7 @@ const Home = () => {
                         <div className="content-block post-grid post-grid-large mt--30">
                           <div className="post-thumbnail">
                             <a href="post-details.html">
-                              <img
-                                src={postGrid1}
-                                alt="Post Images"
-                              />
+                              <img src={postGrid1} alt="Post Images" />
                             </a>
                           </div>
                           <div className="post-grid-content">
@@ -4448,10 +4561,7 @@ const Home = () => {
                             <div className="content-block post-grid mt--30">
                               <div className="post-thumbnail">
                                 <a href="post-details.html">
-                                  <img
-                                    src={postGrid2}
-                                    alt="Post Images"
-                                  />
+                                  <img src={postGrid2} alt="Post Images" />
                                 </a>
                               </div>
                               <div className="post-grid-content">
@@ -4486,10 +4596,7 @@ const Home = () => {
                             <div className="content-block post-grid mt--30">
                               <div className="post-thumbnail">
                                 <a href="post-details.html">
-                                  <img
-                                    src={postGrid3}
-                                    alt="Post Images"
-                                  />
+                                  <img src={postGrid3} alt="Post Images" />
                                 </a>
                               </div>
                               <div className="post-grid-content">
@@ -4530,7 +4637,12 @@ const Home = () => {
         </div>
         {/* End Post Grid Area  */}
         {/* Start Post List Wrapper  */}
-        <div className={"axil-post-list-area post-listview-visible-color axil-section-gap bg-color-white" + themeColor}>
+        <div
+          className={
+            "axil-post-list-area post-listview-visible-color axil-section-gap bg-color-white" +
+            themeColor
+          }
+        >
           <div className="container">
             <div className="row">
               <div className="col-lg-8 col-xl-8">
@@ -4549,10 +4661,7 @@ const Home = () => {
                 <div className="content-block post-list-view axil-control is-active mt--30">
                   <div className="post-thumbnail">
                     <a href="post-details.html">
-                      <img
-                        src={postLis11}
-                        alt="Post Images"
-                      />
+                      <img src={postLis11} alt="Post Images" />
                     </a>
                   </div>
                   <div className="post-content border">
@@ -4620,10 +4729,7 @@ const Home = () => {
                 <div className="content-block post-list-view axil-control mt--30">
                   <div className="post-thumbnail">
                     <a href="post-details.html">
-                      <img
-                        src={postLis12}
-                        alt="Post Images"
-                      />
+                      <img src={postLis12} alt="Post Images" />
                     </a>
                   </div>
                   <div className="post-content border">
@@ -4690,10 +4796,7 @@ const Home = () => {
                 <div className="content-block post-list-view axil-control mt--30">
                   <div className="post-thumbnail">
                     <a href="post-details.html">
-                      <img
-                        src={postLis15}
-                        alt="Post Images"
-                      />
+                      <img src={postLis15} alt="Post Images" />
                     </a>
                   </div>
                   <div className="post-content border">
@@ -4760,10 +4863,7 @@ const Home = () => {
                 <div className="content-block post-list-view axil-control mt--30">
                   <div className="post-thumbnail">
                     <a href="post-details.html">
-                      <img
-                        src={postLis13}
-                        alt="Post Images"
-                      />
+                      <img src={postLis13} alt="Post Images" />
                     </a>
                   </div>
                   <div className="post-content border">
@@ -4831,10 +4931,7 @@ const Home = () => {
                 <div className="content-block post-list-view axil-control mt--30">
                   <div className="post-thumbnail">
                     <a href="post-details.html">
-                      <img
-                        src={postLis14}
-                        alt="Post Images"
-                      />
+                      <img src={postLis14} alt="Post Images" />
                     </a>
                   </div>
                   <div className="post-content border">
@@ -4908,10 +5005,7 @@ const Home = () => {
                       <li className="cat-item">
                         <a href="#" className="inner">
                           <div className="thumbnail">
-                            <img
-                              src={categoryImage01}
-                              alt=""
-                            />
+                            <img src={categoryImage01} alt="" />
                           </div>
                           <div className="content">
                             <h5 className="title">Tech</h5>
@@ -4921,10 +5015,7 @@ const Home = () => {
                       <li className="cat-item">
                         <a href="#" className="inner">
                           <div className="thumbnail">
-                            <img
-                              src={categoryImage02}
-                              alt=""
-                            />
+                            <img src={categoryImage02} alt="" />
                           </div>
                           <div className="content">
                             <h5 className="title">Style</h5>
@@ -4934,10 +5025,7 @@ const Home = () => {
                       <li className="cat-item">
                         <a href="#" className="inner">
                           <div className="thumbnail">
-                            <img
-                              src={categoryImage03}
-                              alt=""
-                            />
+                            <img src={categoryImage03} alt="" />
                           </div>
                           <div className="content">
                             <h5 className="title">Travel</h5>
@@ -4947,10 +5035,7 @@ const Home = () => {
                       <li className="cat-item">
                         <a href="#" className="inner">
                           <div className="thumbnail">
-                            <img
-                              src={categoryImage04}
-                              alt=""
-                            />
+                            <img src={categoryImage04} alt="" />
                           </div>
                           <div className="content">
                             <h5 className="title">Food</h5>
@@ -4986,10 +5071,7 @@ const Home = () => {
                       <div className="content-block post-medium mb--20">
                         <div className="post-thumbnail">
                           <a href="post-details.html">
-                            <img
-                              src={blogSm01}
-                              alt="Post Images"
-                            />
+                            <img src={blogSm01} alt="Post Images" />
                           </a>
                         </div>
                         <div className="post-content">
@@ -5012,10 +5094,7 @@ const Home = () => {
                       <div className="content-block post-medium mb--20">
                         <div className="post-thumbnail">
                           <a href="post-details.html">
-                            <img
-                              src={blogSm02}
-                              alt="Post Images"
-                            />
+                            <img src={blogSm02} alt="Post Images" />
                           </a>
                         </div>
                         <div className="post-content">
@@ -5037,10 +5116,7 @@ const Home = () => {
                       <div className="content-block post-medium mb--20">
                         <div className="post-thumbnail">
                           <a href="post-details.html">
-                            <img
-                              src={blogSm03}
-                              alt="Post Images"
-                            />
+                            <img src={blogSm03} alt="Post Images" />
                           </a>
                         </div>
                         <div className="post-content">
@@ -5070,27 +5146,27 @@ const Home = () => {
                     <ul className="social-icon md-size justify-content-center">
                       <li>
                         <a href="#" className="icons">
-                          <i className="fab fa-facebook-f "/>
+                          <i className="fab fa-facebook-f " />
                         </a>
                       </li>
                       <li>
                         <a href="#" className="icons">
-                          <i className="fab fa-instagram "/>
+                          <i className="fab fa-instagram " />
                         </a>
                       </li>
                       <li>
                         <a href="#" className="icons">
-                          <i className="fab fa-twitter "/>
+                          <i className="fab fa-twitter " />
                         </a>
                       </li>
                       <li>
                         <a href="#" className="icons">
-                          <i className="fab fa-slack "/>
+                          <i className="fab fa-slack " />
                         </a>
                       </li>
                       <li>
                         <a href="#" className="icons">
-                          <i className="fab fa-linkedin-in "/>
+                          <i className="fab fa-linkedin-in " />
                         </a>
                       </li>
                     </ul>
@@ -5104,50 +5180,32 @@ const Home = () => {
                     <ul className="instagram-post-list-wrapper">
                       <li className="instagram-post-list">
                         <a href="#">
-                          <img
-                            src={instagram01}
-                            alt="Instagram Images"
-                          />
+                          <img src={instagram01} alt="Instagram Images" />
                         </a>
                       </li>
                       <li className="instagram-post-list">
                         <a href="#">
-                          <img
-                            src={instagram02}
-                            alt="Instagram Images"
-                          />
+                          <img src={instagram02} alt="Instagram Images" />
                         </a>
                       </li>
                       <li className="instagram-post-list">
                         <a href="#">
-                          <img
-                            src={instagram03}
-                            alt="Instagram Images"
-                          />
+                          <img src={instagram03} alt="Instagram Images" />
                         </a>
                       </li>
                       <li className="instagram-post-list">
                         <a href="#">
-                          <img
-                            src={instagram04}
-                            alt="Instagram Images"
-                          />
+                          <img src={instagram04} alt="Instagram Images" />
                         </a>
                       </li>
                       <li className="instagram-post-list">
                         <a href="#">
-                          <img
-                            src={instagram05}
-                            alt="Instagram Images"
-                          />
+                          <img src={instagram05} alt="Instagram Images" />
                         </a>
                       </li>
                       <li className="instagram-post-list">
                         <a href="#">
-                          <img
-                            src={instagram06}
-                            alt="Instagram Images"
-                          />
+                          <img src={instagram06} alt="Instagram Images" />
                         </a>
                       </li>
                     </ul>
@@ -5162,7 +5220,11 @@ const Home = () => {
         </div>
         {/* End Post List Wrapper  */}
         {/* Start Video Area  */}
-        <div className={"axil-video-post-area axil-section-gap bg-color-black" + themeColor}>
+        <div
+          className={
+            "axil-video-post-area axil-section-gap bg-color-black" + themeColor
+          }
+        >
           <div className="container">
             <div className="row">
               <div className="col-lg-12">
@@ -5177,10 +5239,7 @@ const Home = () => {
                 <div className="content-block post-default image-rounded mt--30">
                   <div className="post-thumbnail">
                     <a href="post-details.html">
-                      <img
-                        src={postDark01}
-                        alt="Post Images"
-                      />
+                      <img src={postDark01} alt="Post Images" />
                     </a>
                     <a
                       className="video-popup position-top-center"
@@ -5258,10 +5317,7 @@ const Home = () => {
                     <div className="content-block post-default image-rounded mt--30">
                       <div className="post-thumbnail">
                         <a href="post-details.html">
-                          <img
-                            src={postDark04}
-                            alt="Post Images"
-                          />
+                          <img src={postDark04} alt="Post Images" />
                         </a>
                         <a
                           className="video-popup size-medium position-top-center"
@@ -5294,10 +5350,7 @@ const Home = () => {
                     <div className="content-block post-default image-rounded mt--30">
                       <div className="post-thumbnail">
                         <a href="post-details.html">
-                          <img
-                            src={postDark03}
-                            alt="Post Images"
-                          />
+                          <img src={postDark03} alt="Post Images" />
                         </a>
                         <a
                           className="video-popup size-medium position-top-center"
@@ -5330,10 +5383,7 @@ const Home = () => {
                     <div className="content-block post-default image-rounded mt--30">
                       <div className="post-thumbnail">
                         <a href="post-details.html">
-                          <img
-                            src={postDark04}
-                            alt="Post Images"
-                          />
+                          <img src={postDark04} alt="Post Images" />
                         </a>
                         <a
                           className="video-popup size-medium position-top-center"
@@ -5368,10 +5418,7 @@ const Home = () => {
                     <div className="content-block post-default image-rounded mt--30">
                       <div className="post-thumbnail">
                         <a href="post-details.html">
-                          <img
-                            src={postDark05}
-                            alt="Post Images"
-                          />
+                          <img src={postDark05} alt="Post Images" />
                         </a>
                         <a
                           className="video-popup size-medium position-top-center"
@@ -5409,7 +5456,11 @@ const Home = () => {
         </div>
         {/* End Video Area  */}
         {/* Start Instagram Area  */}
-        <div className={"axil-instagram-area axil-section-gap bg-color-grey" + themeColor}>
+        <div
+          className={
+            "axil-instagram-area axil-section-gap bg-color-grey" + themeColor
+          }
+        >
           <div className="container">
             <div className="row">
               <div className="col-lg-12">
@@ -5423,10 +5474,7 @@ const Home = () => {
                 <ul className="instagram-post-list">
                   <li className="single-post">
                     <a href="#">
-                      <img
-                        src={instagram01}
-                        alt="Instagram Images"
-                      />
+                      <img src={instagram01} alt="Instagram Images" />
                       <span className="instagram-button icons">
                         <i className="fab fa-instagram" />
                       </span>
@@ -5434,10 +5482,7 @@ const Home = () => {
                   </li>
                   <li className="single-post">
                     <a href="#">
-                      <img
-                        src={instagram02}
-                        alt="Instagram Images"
-                      />
+                      <img src={instagram02} alt="Instagram Images" />
                       <span className="instagram-button icons">
                         <i className="fab fa-instagram" />
                       </span>
@@ -5445,22 +5490,16 @@ const Home = () => {
                   </li>
                   <li className="single-post">
                     <a href="#">
-                      <img
-                        src={instagram03}
-                        alt="Instagram Images"
-                      />
+                      <img src={instagram03} alt="Instagram Images" />
                       <span className="instagram-button icons">
                         <i className="fab fa-instagram" />
                       </span>
                     </a>
                   </li>
-                      
+
                   <li className="single-post">
                     <a href="#">
-                      <img
-                        src={instagram04}
-                        alt="Instagram Images"
-                      />
+                      <img src={instagram04} alt="Instagram Images" />
                       <span className="instagram-button icons">
                         <i className="fab fa-instagram" />
                       </span>
@@ -5468,10 +5507,7 @@ const Home = () => {
                   </li>
                   <li className="single-post">
                     <a href="#">
-                      <img
-                        src={instagram05}
-                        alt="Instagram Images"
-                      />
+                      <img src={instagram05} alt="Instagram Images" />
                       <span className="instagram-button icons">
                         <i className="fab fa-instagram" />
                       </span>
@@ -5479,10 +5515,7 @@ const Home = () => {
                   </li>
                   <li className="single-post">
                     <a href="#">
-                      <img
-                        src={instagram06}
-                        alt="Instagram Images"
-                      />
+                      <img src={instagram06} alt="Instagram Images" />
                       <span className="instagram-button icons">
                         <i className="fab fa-instagram" />
                       </span>
@@ -5495,7 +5528,12 @@ const Home = () => {
         </div>
         {/* End Instagram Area  */}
         {/* Start Footer Area  */}
-        <div className={"axil-footer-area axil-footer-style-1 footer-variation-2" + themeColor}>
+        <div
+          className={
+            "axil-footer-area axil-footer-style-1 footer-variation-2" +
+            themeColor
+          }
+        >
           <div className="footer-mainmenu">
             <div className="container">
               <div className="row">
@@ -5818,6 +5856,5 @@ const Home = () => {
     </>
   );
 };
-
 
 export default Home;

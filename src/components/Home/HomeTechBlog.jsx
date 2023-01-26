@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import logoBlack from '../../images/logo/logo-black.png';
 import logoWhite from '../../images/logo/logo-white.png';
 import logoWhite2 from '../../images/logo/logo-white2.png';
@@ -22,6 +22,8 @@ import featuredPost01 from '../../images/post-single/featured-post-01.jpg';
 import postMd01 from '../../images/post-single/post-md-01.jpg';
 import { useSelector } from "react-redux";
 import { selectThemeColor } from "../../store/theme";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBars, faX } from '@fortawesome/free-solid-svg-icons'
 function change(num, from, to, target) {
   for (let i = 0; i < document.getElementsByClassName(target).length; i++) {
     document.getElementsByClassName(target)[i].classList.remove(to)
@@ -31,10 +33,14 @@ function change(num, from, to, target) {
 }
 
 const HomeTechBlog = () => {
+  const [showBurger, setShowBurger] = useState(false);
+  const burgerFunc = () =>{
+    setShowBurger(!showBurger)
+  }
   const themeColor = useSelector(selectThemeColor);
   return (
     <>
-     <div className="main-wrapper">
+     <div className={showBurger ? "main-wrapper popup-mobile-menu-show" : 'main-wrapper'}>
         <div className="mouse-cursor cursor-outer" />
         <div className="mouse-cursor cursor-inner" />
 
@@ -737,7 +743,9 @@ const HomeTechBlog = () => {
                     {/* Start Hamburger Menu  */}
                     <div className="hamburger-menu d-block d-xl-none">
                       <div className="hamburger-inner">
-                        <div className="icon"><i className="fal fa-bars" /></div>
+                      <div className="icon" onClick={burgerFunc}>
+                        <FontAwesomeIcon icon={faBars} />
+                      </div>
                       </div>
                     </div>
                     {/* End Hamburger Menu  */}
@@ -749,8 +757,8 @@ const HomeTechBlog = () => {
         </header>
         {/* Start Header */}
         {/* Start Mobile Menu Area  */}
-        <div className={"popup-mobilemenu-area" + themeColor}>
-          <div className="inner">
+        <div className={"popup-mobilemenu-area"} onClick={burgerFunc}>
+          <div className={"inner" + themeColor} onClick={(event)=> event.stopPropagation()}>
             <div className="mobile-menu-top">
               <div className="logo">
                 <a href="index.html">
@@ -758,9 +766,9 @@ const HomeTechBlog = () => {
                   <img className="light-logo" src={logoWhite2} alt="Logo Images" />
                 </a>
               </div>
-              <div className="mobile-close">
+              <div className="mobile-close" onClick={burgerFunc}>
                 <div className="icon">
-                  <i className="fal fa-times" />
+                  <i><FontAwesomeIcon icon={faX}/></i>
                 </div>
               </div>
             </div>

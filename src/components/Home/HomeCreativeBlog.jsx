@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import logoWhite from '../../images/logo/logo-white.png';
 import logoWhite2 from '../../images/logo/logo-white2.png';
 import logoBlack from '../../images/logo/logo-black.png';
@@ -29,10 +29,6 @@ import postColumn06 from '../../images/post-images/post-column-06.jpg'
 import postColumn07 from '../../images/post-images/post-column-07.jpg'
 import postColumn08 from '../../images/post-images/post-column-08.jpg'
 import postColumn09 from '../../images/post-images/post-column-09.jpg'
-import postColumn10 from '../../images/post-images/post-column-10.jpg'
-import postColumn11 from '../../images/post-images/post-column-11.jpg'
-import banner1 from '../../images/add-banner/banner-01.png'
-import banner2 from '../../images/add-banner/banner-02.png'
 import banner3 from '../../images/add-banner/banner-03.png'
 import postGrid02 from '../../images/post-images/post-grid-02.jpg';
 import categoryImage from '../../images/post-images/category-image-01.jpg'
@@ -41,7 +37,8 @@ import instagram from "../../images/small-images/instagram-md-06.jpg";
 import Slider from 'react-slick';
 import { useSelector } from "react-redux";
 import { selectThemeColor } from "../../store/theme";
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBars, faX } from '@fortawesome/free-solid-svg-icons'
 const settings = {
   dots: false,
   infinite: true,
@@ -66,10 +63,14 @@ function change(num, from, to, target) {
 // document.getElementsByClassName("slick-next")[0].innerHTML = <i class="fa-regular fa-arrow-right"></i>
 
 const HomeCreativeBlog = () => {
+  const [showBurger, setShowBurger] = useState(false);
+  const burgerFunc = () =>{
+    setShowBurger(!showBurger)
+  }
   const themeColor = useSelector(selectThemeColor);
   return (
     <>
-         <div className="main-wrapper outline">
+         <div className={showBurger ? "main-wrapper outline popup-mobile-menu-show" : 'main-wrapper outline'}>
         <div className="mouse-cursor cursor-outer" />
         <div className="mouse-cursor cursor-inner" />
         {/* Start Header */}
@@ -731,7 +732,9 @@ const HomeCreativeBlog = () => {
                   {/* Start Hamburger Menu  */}
                   <div className="hamburger-menu d-block d-xl-none">
                     <div className="hamburger-inner">
-                      <div className="icon"><i className="fal fa-bars" /></div>
+                    <div className="icon" onClick={burgerFunc}>
+                        <FontAwesomeIcon icon={faBars} />
+                      </div>
                     </div>
                   </div>
                   {/* End Hamburger Menu  */}
@@ -742,8 +745,8 @@ const HomeCreativeBlog = () => {
         </header>
         {/* Start Header */}
         {/* Start Mobile Menu Area  */}
-        <div className={"popup-mobilemenu-area" + themeColor}>
-          <div className="inner">
+        <div className={"popup-mobilemenu-area"} onClick={burgerFunc}>
+          <div className={"inner" + themeColor} onClick={(event)=> event.stopPropagation()}>
             <div className="mobile-menu-top">
               <div className="logo">
                 <a href="index.html">
@@ -751,9 +754,11 @@ const HomeCreativeBlog = () => {
                   <img className="light-logo" src={logoWhite2} alt="Logo Images" />
                 </a>
               </div>
-              <div className="mobile-close">
+              <div className="mobile-close" onClick={burgerFunc}>
                 <div className="icon">
-                  <i className="fal fa-times" />
+                  <i>
+                    <FontAwesomeIcon icon={faX} />
+                  </i>
                 </div>
               </div>
             </div>

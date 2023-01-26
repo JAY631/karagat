@@ -1,28 +1,18 @@
-import React from 'react'
+import React, {useState} from 'react'
 import logoBlack from '../../images/logo/logo-black.png';
 import logoWhite from '../../images/logo/logo-white.png';
 import logoWhite2 from '../../images/logo/logo-white2.png';
-import add from '../../images/others/add-01.png';
-import banner from '../../images/add-banner/banner-01.png';
-import banner1 from '../../images/add-banner/banner-03.png';
 import author from '../../images/others/author.png';
 import lifestylePost from '../../images/post-images/lifestyle-post-01.jpg';
 import lifestylePost06 from '../../images/post-images/lifestyle-post-06.jpg';
 import megaPost01 from '../../images/others/mega-post-01.jpg';
-import postTect1 from '../../images/post-images/post-tect-01.jpg';
-import postTect2 from '../../images/post-images/post-tect-02.jpg'
 import postSm01 from '../../images/post-images/post-sm-01.jpg';
-import postTech09 from '../../images/post-images/post-tech-09.jpg';
 import postDark01 from '../../images/post-images/post-dark-01.jpg';
-import postDark04 from '../../images/post-images/post-dark-04.jpg'
-import postTech06 from '../../images/post-images/post-tech-06.jpg';
-import postTestTech from '../../images/post-images/post-test-tech-01.jpg';
+import postDark04 from '../../images/post-images/post-dark-04.jpg';
 import categoryImage01 from '../../images/post-images/category-image-01.jpg';
 import blogSm01 from '../../images/small-images/blog-sm-01.jpg';
 import instagram01 from '../../images/small-images/instagram-01.jpg';
 import instagram from '../../images/small-images/instagram-md-06.jpg';
-import featuredPost01 from '../../images/post-single/featured-post-01.jpg';
-import postMd01 from '../../images/post-single/post-md-01.jpg';
 import postSeoList from '../../images/small-images/post-seo-list-02.jpg';
 import liststyleSm01 from '../../images/small-images/liststyle-sm-01.jpg';
 import lifestyleGrid01 from '../../images/post-images/lifestyle-grid-01.jpg';
@@ -30,7 +20,10 @@ import authorImage3 from '../../images/post-images/author/author-image-3.png';
 import postList05 from '../../images/post-images/post-list-05.jpg';
 import authorImage2 from '../../images/post-images/author/author-image-2.png';
 import authorImage1 from '../../images/post-images/author/author-image-1.png';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBars, faX } from '@fortawesome/free-solid-svg-icons'
+import { useSelector } from "react-redux";
+import { selectThemeColor } from "../../store/theme";
 function change(num, from, to, target) {
   for (let i = 0; i < document.getElementsByClassName(target).length; i++) {
     document.getElementsByClassName(target)[i].classList.remove(to)
@@ -40,13 +33,18 @@ function change(num, from, to, target) {
 }
 
 export default function HomeLifestyleBlog() {
+  const themeColor = useSelector(selectThemeColor);
+   const [showBurger, setShowBurger] = useState(false);
+   const burgerFunc = () =>{
+     setShowBurger(!showBurger)
+   }
   return (
     <>
-    <div className="main-wrapper">
+    <div className={showBurger ? "main-wrapper popup-mobile-menu-show" : 'main-wrapper'}>
         <div className="mouse-cursor cursor-outer" />
         <div className="mouse-cursor cursor-inner" />
         {/* Start Header */}
-        <header className="header axil-header header-style-4  header-light header-sticky ">
+        <header className={"header axil-header header-style-4  header-light header-sticky " + themeColor}>
           <div className="header-top">
             <div className="container">
               <div className="row align-items-center">
@@ -724,14 +722,16 @@ export default function HomeLifestyleBlog() {
                       </form>
                     </div>
                     <ul className="metabar-block">
-                      <li className="icon"><a href="#"><i className="fas fa-bookmark" /></a></li>
-                      <li className="icon"><a href="#"><i className="fas fa-bell" /></a></li>
+                      <li className="icon"><a className='icons' href="#"><i className="fas fa-bookmark" /></a></li>
+                      <li className="icon"><a className='icons' href="#"><i className="fas fa-bell" /></a></li>
                       <li><a href="#"><img src={author} alt="Author Images" /></a></li>
                     </ul>
                     {/* Start Hamburger Menu  */}
                     <div className="hamburger-menu d-block d-xl-none">
                       <div className="hamburger-inner">
-                        <div className="icon"><i className="fal fa-bars" /></div>
+                      <div className="icon icons" onClick={burgerFunc}>
+                        <FontAwesomeIcon icon={faBars} />
+                      </div>
                       </div>
                     </div>
                     {/* End Hamburger Menu  */}
@@ -743,8 +743,8 @@ export default function HomeLifestyleBlog() {
         </header>
         {/* Start Header */}
         {/* Start Mobile Menu Area  */}
-        <div className="popup-mobilemenu-area">
-          <div className="inner">
+        <div className={"popup-mobilemenu-area"} onClick={burgerFunc}>
+          <div className={"inner" + themeColor} onClick={(event)=> event.stopPropagation()}>
             <div className="mobile-menu-top">
               <div className="logo">
                 <a href="index.html">
@@ -752,9 +752,9 @@ export default function HomeLifestyleBlog() {
                   <img className="light-logo" src={logoWhite2} alt="Logo Images" />
                 </a>
               </div>
-              <div className="mobile-close">
+              <div className="mobile-close" onClick={burgerFunc}>
                 <div className="icon">
-                  <i className="fal fa-times" />
+                  <i><FontAwesomeIcon icon={faX}/></i>
                 </div>
               </div>
             </div>
@@ -810,7 +810,7 @@ export default function HomeLifestyleBlog() {
         {/* End Mobile Menu Area  */}
         {/* Start Banner Area */}
         <h1 className="d-none">Home Life Style Blog</h1>
-        <div className="slider-area bg-color-grey ptb--80">
+        <div className={"slider-area bg-color-grey ptb--80" + themeColor}>
           <div className="axil-slide slider-style-2 plr--135 plr_lg--30 plr_md--30 plr_sm--30">
             <div className="row row--10">
               <div className="col-lg-12 col-xl-6 col-md-12 col-12">
@@ -952,7 +952,7 @@ export default function HomeLifestyleBlog() {
         </div>
         {/* End Banner Area */}
         {/* Start Tab Area  */}
-        <div className="axil-tab-area axil-section-gap bg-color-white">
+        <div className={"axil-tab-area axil-section-gap bg-color-white" + themeColor}>
           <div className="container">
             <div className="row">
               <div className="col-12">
@@ -1486,7 +1486,7 @@ export default function HomeLifestyleBlog() {
         </div>
         {/* End Tab Area  */}
         {/* Start Post Grid Area  */}
-        <div className="axil-post-grid-area axil-section-gap bg-color-grey">
+        <div className={"axil-post-grid-area axil-section-gap bg-color-grey" + themeColor}>
           <div className="container">
             <div className="row">
               <div className="col-lg-12">
@@ -1525,7 +1525,7 @@ export default function HomeLifestyleBlog() {
                                 </a>
                               </div>
                               <div className="post-grid-content">
-                                <div className="post-content">
+                                <div className="post-content darks">
                                   <div className="post-cat">
                                     <div className="post-cat-list">
                                       <a className="hover-flip-item-wrapper" href="#">
@@ -1551,7 +1551,7 @@ export default function HomeLifestyleBlog() {
                                 </a>
                               </div>
                               <div className="post-grid-content">
-                                <div className="post-content">
+                                <div className="post-content darks">
                                   <div className="post-cat">
                                     <div className="post-cat-list">
                                       <a className="hover-flip-item-wrapper" href="#">
@@ -1580,7 +1580,7 @@ export default function HomeLifestyleBlog() {
                             </a>
                           </div>
                           <div className="post-grid-content">
-                            <div className="post-content">
+                            <div className="post-content darks">
                               <div className="post-cat">
                                 <div className="post-cat-list">
                                   <a className="hover-flip-item-wrapper" href="#">
@@ -1640,7 +1640,7 @@ export default function HomeLifestyleBlog() {
                                 </a>
                               </div>
                               <div className="post-grid-content">
-                                <div className="post-content">
+                                <div className="post-content darks">
                                   <div className="post-cat">
                                     <div className="post-cat-list">
                                       <a className="hover-flip-item-wrapper" href="#">
@@ -1666,7 +1666,7 @@ export default function HomeLifestyleBlog() {
                                 </a>
                               </div>
                               <div className="post-grid-content">
-                                <div className="post-content">
+                                <div className="post-content darks">
                                   <div className="post-cat">
                                     <div className="post-cat-list">
                                       <a className="hover-flip-item-wrapper" href="#">
@@ -1695,7 +1695,7 @@ export default function HomeLifestyleBlog() {
                             </a>
                           </div>
                           <div className="post-grid-content">
-                            <div className="post-content">
+                            <div className="post-content darks">
                               <div className="post-cat">
                                 <div className="post-cat-list">
                                   <a className="hover-flip-item-wrapper" href="#">
@@ -1755,7 +1755,7 @@ export default function HomeLifestyleBlog() {
                                 </a>
                               </div>
                               <div className="post-grid-content">
-                                <div className="post-content">
+                                <div className="post-content darks">
                                   <div className="post-cat">
                                     <div className="post-cat-list">
                                       <a className="hover-flip-item-wrapper" href="#">
@@ -1781,7 +1781,7 @@ export default function HomeLifestyleBlog() {
                                 </a>
                               </div>
                               <div className="post-grid-content">
-                                <div className="post-content">
+                                <div className="post-content darks">
                                   <div className="post-cat">
                                     <div className="post-cat-list">
                                       <a className="hover-flip-item-wrapper" href="#">
@@ -1810,7 +1810,7 @@ export default function HomeLifestyleBlog() {
                             </a>
                           </div>
                           <div className="post-grid-content">
-                            <div className="post-content">
+                            <div className="post-content darks">
                               <div className="post-cat">
                                 <div className="post-cat-list">
                                   <a className="hover-flip-item-wrapper" href="#">
@@ -1979,7 +1979,7 @@ export default function HomeLifestyleBlog() {
         </div>
         {/* End Post Grid Area  */}
         {/* Start Video Area  */}
-        <div className="axil-video-post-area axil-section-gap bg-color-black">
+        <div className={"axil-video-post-area axil-section-gap bg-color-black" + themeColor}>
           <div className="container">
             <div className="row">
               <div className="col-lg-12">
@@ -2143,7 +2143,7 @@ export default function HomeLifestyleBlog() {
         </div>
         {/* End Video Area  */}
         {/* Start Categories List  */}
-        <div className="axil-categories-list axil-section-gap bg-color-grey">
+        <div className={"axil-categories-list axil-section-gap bg-color-grey" + themeColor}>
           <div className="container">
             <div className="row align-items-center mb--30">
               <div className="col-lg-6 col-md-8 col-sm-8 col-12">
@@ -2281,7 +2281,7 @@ export default function HomeLifestyleBlog() {
         </div>
         {/* Start Categories List  */}
         {/* Start Post List Wrapper  */}
-        <div className="axil-post-list-area post-listview-visible-color axil-section-gap bg-color-white">
+        <div className={"axil-post-list-area post-listview-visible-color axil-section-gap bg-color-white" + themeColor}>
           <div className="container">
             <div className="row">
               <div className="col-lg-8 col-xl-8">
@@ -2653,11 +2653,11 @@ export default function HomeLifestyleBlog() {
                     <h5 className="widget-title">Stay In Touch</h5>
                     {/* Start Post List  */}
                     <ul className="social-icon md-size justify-content-center">
-                      <li><a href="#"><i className="fab fa-facebook-f" /></a></li>
-                      <li><a href="#"><i className="fab fa-instagram" /></a></li>
-                      <li><a href="#"><i className="fab fa-twitter" /></a></li>
-                      <li><a href="#"><i className="fab fa-slack" /></a></li>
-                      <li><a href="#"><i className="fab fa-linkedin-in" /></a></li>
+                      <li><a href="#" className='icons'><i className="fab fa-facebook-f" /></a></li>
+                      <li><a href="#" className='icons'><i className="fab fa-instagram" /></a></li>
+                      <li><a href="#" className='icons'><i className="fab fa-twitter" /></a></li>
+                      <li><a href="#" className='icons'><i className="fab fa-slack" /></a></li>
+                      <li><a href="#" className='icons'><i className="fab fa-linkedin-in" /></a></li>
                     </ul>
                     {/* End Post List  */}
                   </div>
@@ -2709,19 +2709,19 @@ export default function HomeLifestyleBlog() {
         </div>
         {/* End Post List Wrapper  */}
         {/* Start Instagram Area  */}
-        <div className="axil-instagram-area axil-section-gap bg-color-grey">
+        <div className={"axil-instagram-area axil-section-gap bg-color-grey" + themeColor}>
           <div className="container">
             {/* Start Social Area  */}
             <div className="row pb--70">
               <div className="col-lg-12">
-                <div className="axil-social-wrapper bg-color-white radius">
+                <div className="axil-social-wrapper bg-color-white radius darks">
                   <ul className="social-with-text">
-                    <li className="twitter"><a href="#"><i className="fab fa-twitter" /><span>Twitter</span></a></li>
-                    <li className="facebook"><a href="#"><i className="fab fa-facebook-f" /><span>Facebook</span></a></li>
-                    <li className="instagram"><a href="#"><i className="fab fa-instagram" /><span>Instagram</span></a></li>
-                    <li className="youtube"><a href="#"><i className="fab fa-youtube" /><span>Youtube</span></a></li>
-                    <li className="pinterest"><a href="#"><i className="fab fa-pinterest" /><span>Pinterest</span></a></li>
-                    <li className="discord"><a href="#"><i className="fab fa-discord" /><span>Discord</span></a></li>
+                    <li className="twitter"><a href="#" ><i className="fab fa-twitter icons" /><span>Twitter</span></a></li>
+                    <li className="facebook"><a href="#" ><i className="fab fa-facebook-f icons" /><span>Facebook</span></a></li>
+                    <li className="instagram"><a href="#"><i className="fab fa-instagram icons" /><span>Instagram</span></a></li>
+                    <li className="youtube"><a href="#" ><i className="fab fa-youtube icons" /><span>Youtube</span></a></li>
+                    <li className="pinterest"><a href="#"><i className="fab fa-pinterest icons" /><span>Pinterest</span></a></li>
+                    <li className="discord"><a href="#" ><i className="fab fa-discord icons" /><span>Discord</span></a></li>
                   </ul>
                 </div>
               </div>
@@ -2740,37 +2740,37 @@ export default function HomeLifestyleBlog() {
                   <li className="single-post">
                     <a href="#">
                       <img src={instagram01} alt="Instagram Images" />
-                      <span className="instagram-button"><i className="fab fa-instagram" /></span>
+                      <span className="instagram-button icons"><i className="fab fa-instagram" /></span>
                     </a>
                   </li>
                   <li className="single-post">
                     <a href="#">
                       <img src={instagram01} alt="Instagram Images" />
-                      <span className="instagram-button"><i className="fab fa-instagram" /></span>
+                      <span className="instagram-button icons"><i className="fab fa-instagram" /></span>
                     </a>
                   </li>
                   <li className="single-post">
                     <a href="#">
                       <img src={instagram01} alt="Instagram Images" />
-                      <span className="instagram-button"><i className="fab fa-instagram" /></span>
+                      <span className="instagram-button icons"><i className="fab fa-instagram" /></span>
                     </a>
                   </li>
                   <li className="single-post">
                     <a href="#">
                       <img src={instagram01} alt="Instagram Images" />
-                      <span className="instagram-button"><i className="fab fa-instagram" /></span>
+                      <span className="instagram-button icons"><i className="fab fa-instagram" /></span>
                     </a>
                   </li>
                   <li className="single-post">
                     <a href="#">
                       <img src={instagram01} alt="Instagram Images" />
-                      <span className="instagram-button"><i className="fab fa-instagram" /></span>
+                      <span className="instagram-button icons"><i className="fab fa-instagram" /></span>
                     </a>
                   </li>
                   <li className="single-post">
                     <a href="#">
                       <img src={instagram01} alt="Instagram Images" />
-                      <span className="instagram-button"><i className="fab fa-instagram" /></span>
+                      <span className="instagram-button icons"><i className="fab fa-instagram" /></span>
                     </a>
                   </li>
                 </ul>
@@ -2780,7 +2780,7 @@ export default function HomeLifestyleBlog() {
         </div>
         {/* End Instagram Area  */}
         {/* Start Footer Area  */}
-        <div className="axil-footer-area axil-footer-style-1 bg-color-white">
+        <div className={"axil-footer-area axil-footer-style-1 bg-color-white" + themeColor}>
           {/* Start Footer Top Area  */}
           <div className="footer-top">
             <div className="container">
@@ -2790,10 +2790,10 @@ export default function HomeLifestyleBlog() {
                   <div className="inner d-flex align-items-center flex-wrap">
                     <h5 className="follow-title mb--0 mr--20">Follow Us</h5>
                     <ul className="social-icon color-tertiary md-size justify-content-start">
-                      <li><a href="#"><i className="fab fa-facebook-f" /></a></li>
-                      <li><a href="#"><i className="fab fa-instagram" /></a></li>
-                      <li><a href="#"><i className="fab fa-twitter" /></a></li>
-                      <li><a href="#"><i className="fab fa-linkedin-in" /></a></li>
+                      <li><a href="#" className='icons'><i className="fab fa-facebook-f" /></a></li>
+                      <li><a href="#" className='icons'><i className="fab fa-instagram" /></a></li>
+                      <li><a href="#" className='icons'><i className="fab fa-twitter" /></a></li>
+                      <li><a href="#" className='icons'><i className="fab fa-linkedin-in" /></a></li>
                     </ul>
                   </div>
                   {/* End Post List  */}

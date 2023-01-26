@@ -1,35 +1,15 @@
-import React from 'react'
+import React, {useState} from 'react'
 import logoBlack from "../../images/logo/logo-black.png";
 import logoWhite from "../../images/logo/logo-white.png";
 import logoWhite2 from "../../images/logo/logo-white2.png";
-import add from "../../images/others/add-01.png";
-import banner from "../../images/add-banner/banner-01.png";
-import banner1 from "../../images/add-banner/banner-03.png";
 import author from "../../images/others/author.png";
-import lifestylePost from "../../images/post-images/lifestyle-post-01.jpg";
-import lifestylePost06 from "../../images/post-images/lifestyle-post-06.jpg";
 import megaPost01 from "../../images/others/mega-post-01.jpg";
-import postTect1 from "../../images/post-images/post-tect-01.jpg";
-import postTect2 from "../../images/post-images/post-tect-02.jpg";
-import postSm01 from "../../images/post-images/post-sm-01.jpg";
-import postTech09 from "../../images/post-images/post-tech-09.jpg";
-import postDark01 from "../../images/post-images/post-dark-01.jpg";
-import postDark04 from "../../images/post-images/post-dark-04.jpg";
-import postTech06 from "../../images/post-images/post-tech-06.jpg";
-import postTestTech from "../../images/post-images/post-test-tech-01.jpg";
 import categoryImage01 from "../../images/post-images/category-image-01.jpg";
 import blogSm01 from "../../images/small-images/blog-sm-01.jpg";
 import instagram01 from "../../images/small-images/instagram-01.jpg";
 import instagram from "../../images/small-images/instagram-md-06.jpg";
-import featuredPost01 from "../../images/post-single/featured-post-01.jpg";
 import postMd01 from "../../images/post-single/post-md-01.jpg";
-import postSeoList from "../../images/small-images/post-seo-list-02.jpg";
-import liststyleSm01 from "../../images/small-images/liststyle-sm-01.jpg";
-import lifestyleGrid01 from "../../images/post-images/lifestyle-grid-01.jpg";
 import authorImage3 from "../../images/post-images/author/author-image-3.png";
-import postList05 from "../../images/post-images/post-list-05.jpg";
-import authorImage2 from "../../images/post-images/author/author-image-2.png";
-import authorImage1 from "../../images/post-images/author/author-image-1.png";
 import postSingle01 from "../../images/post-single/post-single-01.jpg";
 import authorB1 from "../../images/post-images/author/author-b1.png";
 import ads01 from "../../images/post-single/ads-01.jpg";
@@ -37,6 +17,8 @@ import banner02 from "../../images/add-banner/banner-02.png";
 import stories01 from "../../images/post-single/stories-01.jpg";
 import { useSelector } from "react-redux";
 import { selectThemeColor } from "../../store/theme";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBars, faX } from '@fortawesome/free-solid-svg-icons'
 function change(num, from, to, target) {
   for (let i = 0; i < document.getElementsByClassName(target).length; i++) {
     document.getElementsByClassName(target)[i].classList.remove(to)
@@ -46,11 +28,15 @@ function change(num, from, to, target) {
 }
 
 export default function PostLayout5() {
+  const [showBurger, setShowBurger] = useState(false);
+  const burgerFunc = () =>{
+    setShowBurger(!showBurger)
+  }
   const themeColor = useSelector(selectThemeColor);
   return (
     <>
     
-    <div className="main-wrapper">
+    <div className={showBurger ? "main-wrapper popup-mobile-menu-show" : 'main-wrapper'}>
         <div className="mouse-cursor cursor-outer" />
         <div className="mouse-cursor cursor-inner" />
       
@@ -713,7 +699,9 @@ export default function PostLayout5() {
                   {/* Start Hamburger Menu  */}
                   <div className="hamburger-menu d-block d-xl-none">
                     <div className="hamburger-inner">
-                      <div className="icon"><i className="fal fa-bars" /></div>
+                    <div className="icon icons" onClick={burgerFunc}>
+                        <FontAwesomeIcon icon={faBars} />
+                      </div>
                     </div>
                   </div>
                   {/* End Hamburger Menu  */}
@@ -724,8 +712,8 @@ export default function PostLayout5() {
         </header>
         {/* Start Header */}
         {/* Start Mobile Menu Area  */}
-        <div className={"popup-mobilemenu-area" + themeColor}>
-          <div className="inner">
+        <div className={"popup-mobilemenu-area"} onClick={burgerFunc}>
+          <div className={"inner" + themeColor}  onClick={(event)=> event.stopPropagation()}>
             <div className="mobile-menu-top">
               <div className="logo">
                 <a href="index.html">
@@ -733,9 +721,9 @@ export default function PostLayout5() {
                   <img className="light-logo" src={logoWhite2} alt="Logo Images" />
                 </a>
               </div>
-              <div className="mobile-close">
+              <div className="mobile-close" onClick={burgerFunc}>
                 <div className="icon">
-                  <i className="fal fa-times" />
+                  <i><FontAwesomeIcon icon={faX}/></i>
                 </div>
               </div>
             </div>
